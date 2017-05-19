@@ -49,7 +49,7 @@ public class DB1 {
         try {
             Statement sta = conn.createStatement();
             System.out.println(id);
-            sta.executeUpdate("INSERT INTO Login (ID, ) VALUES ('" + id + "', '', '" + "" + "', '" + "" + "', '" + "" + "', '" + "" + "');");
+            sta.executeUpdate("INSERT INTO Games (GameID, CityName, PlayerName) VALUES ('" + id + "', '" + City + "', '" + Name + "');");
 
             System.out.println("Inserted into database");
         } catch (SQLException e) {

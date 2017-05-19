@@ -5,17 +5,39 @@
  */
 package Start;
 
+import DB.DB1;
+import DB.DB2;
+import Game.Game;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author osku0
  */
 public class NewGame extends javax.swing.JFrame {
 
+    private DB2 bMan;
+
     /**
      * Creates new form NewGame
      */
     public NewGame() {
-        initComponents();
+        try {
+            initComponents();
+            bMan = new DB2();
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(NewGame.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error Class not found: " + ex);
+            JOptionPane.showMessageDialog(this, "Error class not found:" + ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(NewGame.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error SQL: " + ex);
+            JOptionPane.showMessageDialog(this, "Error SQL:" + ex);
+        }
     }
 
     /**
@@ -45,11 +67,29 @@ public class NewGame extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 98, -1, -1));
 
         jButton1.setText("Play");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, -1, -1));
 
         setSize(new java.awt.Dimension(1016, 639));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        DB1 DB = bMan.getStorageManager();
+
+        if (jTextField1.equals("") && jTextField2.equals("")) {
+
+        } else {
+            DB.toDB(jTextField1.getText(), jTextField2.getText());
+            this.setVisible(false);
+            new Game().setVisible(true);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
