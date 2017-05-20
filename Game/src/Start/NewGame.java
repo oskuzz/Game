@@ -21,6 +21,7 @@ public class NewGame extends javax.swing.JFrame {
 
     private DB2 bMan;
     static int vaikeus = 1;
+    static int alkuKassa = 1;
 
     /**
      * Creates new form NewGame
@@ -103,7 +104,7 @@ public class NewGame extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 182, -1, -1));
 
-        jLabel5.setText("Aloitus kassa: 50K €");
+        jLabel5.setText("Start money: 50K €");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, -1, -1));
 
         setSize(new java.awt.Dimension(1016, 639));
@@ -117,7 +118,7 @@ public class NewGame extends javax.swing.JFrame {
         if (jTextField1.equals("") && jTextField2.equals("")) {
 
         } else {
-            DB.toDB(jTextField1.getText(), jTextField2.getText());
+            DB.toDB(jTextField1.getText(), jTextField2.getText(), vaikeus, alkuKassa);
             this.setVisible(false);
             new Game().setVisible(true);
         }
@@ -129,8 +130,13 @@ public class NewGame extends javax.swing.JFrame {
         if(vaikeus == 0){
             vaikeus = 1;
         }
+        
+        alkuKassa --;
+        if(alkuKassa == 0){
+            alkuKassa = 1;
+        }
         jLabel4.setText(NewGameHelp1.Vaikeus(vaikeus));
-        jLabel5.setText("Aloitus kassa: " + Integer.toString(NewGameHelp1.alkuKassa(vaikeus)) + "K €");
+        jLabel5.setText("Start money: " + Integer.toString(NewGameHelp1.alkuKassa(alkuKassa)) + "K €");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -139,8 +145,13 @@ public class NewGame extends javax.swing.JFrame {
         if(vaikeus == 4){
             vaikeus = 3;
         }
+        
+        alkuKassa ++;
+        if(alkuKassa == 4){
+            alkuKassa = 3;
+        }
         jLabel4.setText(NewGameHelp1.Vaikeus(vaikeus));
-        jLabel5.setText("Aloitus kassa: " + Integer.toString(NewGameHelp1.alkuKassa(vaikeus)) + "K €");
+        jLabel5.setText("Start money: " + Integer.toString(NewGameHelp1.alkuKassa(alkuKassa)) + "K €");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

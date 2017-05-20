@@ -45,11 +45,11 @@ public class DB1 {
 
     }
 
-    public static void toDB(String City, String Name) {
+    public static void toDB(String City, String Name, int vaikeus, int aloitusKassa) {
         try {
             Statement sta = conn.createStatement();
             System.out.println(id);
-            sta.executeUpdate("INSERT INTO Games (GameID, CityName, PlayerName) VALUES ('" + id + "', '" + City + "', '" + Name + "');");
+            sta.executeUpdate("INSERT INTO Games (GameID, CityName, PlayerName, Difficulty, StartMoney) VALUES ('" + id + "', '" + City + "', '" + Name + "', '" + vaikeus + "', '" + aloitusKassa + "' );");
 
             System.out.println("Inserted into database");
         } catch (SQLException e) {
