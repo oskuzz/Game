@@ -25,6 +25,15 @@ public class StartScreen extends javax.swing.JFrame {
         try {
             initComponents();
             bMan = new DB2();
+            
+            DB1 DB = bMan.getStorageManager();
+            int Game = DB.LoadGame();
+            
+            if (Game == 1) {
+                jButton2.setEnabled(true);
+            }else{
+                jButton2.setEnabled(false);
+            }
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(StartScreen.class.getName()).log(Level.SEVERE, null, ex);
@@ -90,7 +99,7 @@ public class StartScreen extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         DB1 DB = bMan.getStorageManager();
-
+        
         new NewGame().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed

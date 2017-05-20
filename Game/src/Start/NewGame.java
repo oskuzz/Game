@@ -118,7 +118,17 @@ public class NewGame extends javax.swing.JFrame {
         if (jTextField1.equals("") && jTextField2.equals("")) {
 
         } else {
+            try {
+                DB.getID();
+            } catch (SQLException ex) {
+                Logger.getLogger(NewGame.class.getName()).log(Level.SEVERE, null, ex);
+            }
             DB.toDB(jTextField1.getText(), jTextField2.getText(), vaikeus, alkuKassa);
+            try {
+                DB.LoadGame2(1);
+            } catch (SQLException ex) {
+                Logger.getLogger(NewGame.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.setVisible(false);
             new Game().setVisible(true);
         }

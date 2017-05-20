@@ -18,6 +18,7 @@ import java.sql.Statement;
 public class DB1 {
 
     static int id;
+    static int Games;
     private static Connection conn;
 
     public DB1(String urlToDataBase) throws ClassNotFoundException, SQLException {
@@ -33,14 +34,49 @@ public class DB1 {
     }
 
     public static void getID() throws SQLException {
-        String query = "SELECT ID FROM Login ORDER BY ID ASC";
+        String query = "SELECT GameID FROM Games ORDER BY GameID ASC";
 
         Statement sta = conn.createStatement();
         ResultSet rs = sta.executeQuery(query);
         while (rs.next()) {
-            int ID = rs.getInt(1);
-            id = ID;
+            id = rs.getInt(1);
             id++;
+
+        }
+
+    }
+
+    public static void getGames() throws SQLException {
+        String query = "SELECT Games FROM User ORDER BY Games ASC";
+
+        Statement sta = conn.createStatement();
+        ResultSet rs = sta.executeQuery(query);
+        while (rs.next()) {
+            Games = rs.getInt(1);
+            Games++;
+
+        }
+
+    }
+
+    public static int LoadGame() throws SQLException {
+        Statement sta = conn.createStatement();
+        ResultSet rs = sta.executeQuery("SELECT LoadGame FROM User");
+        while (rs.next()) {
+            int Game = rs.getInt(1);
+            return Game;
+        }
+        return 0;
+    }
+
+    public static void LoadGame2(int luku) throws SQLException {
+        try {
+            Statement sta = conn.createStatement();
+            sta.executeUpdate("UPDATE User SET LoadGame = ('" + luku + "') WHERE ID = 0");
+
+            System.out.println("Inserted into database");
+        } catch (SQLException e) {
+            System.out.println(e);
         }
 
     }
@@ -48,7 +84,7 @@ public class DB1 {
     public static void toDB(String City, String Name, int vaikeus, int aloitusKassa) {
         try {
             Statement sta = conn.createStatement();
-            System.out.println(id);
+
             sta.executeUpdate("INSERT INTO Games (GameID, CityName, PlayerName, Difficulty, StartMoney) VALUES ('" + id + "', '" + City + "', '" + Name + "', '" + vaikeus + "', '" + aloitusKassa + "' );");
 
             System.out.println("Inserted into database");
