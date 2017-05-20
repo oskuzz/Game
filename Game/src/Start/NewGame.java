@@ -126,13 +126,13 @@ public class NewGame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        vaikeus --;
-        if(vaikeus == 0){
+        vaikeus--;
+        if (vaikeus == 0) {
             vaikeus = 1;
         }
-        
-        alkuKassa --;
-        if(alkuKassa == 0){
+
+        alkuKassa--;
+        if (alkuKassa == 0) {
             alkuKassa = 1;
         }
         jLabel4.setText(NewGameHelp1.Vaikeus(vaikeus));
@@ -141,13 +141,13 @@ public class NewGame extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        vaikeus ++;
-        if(vaikeus == 4){
+        vaikeus++;
+        if (vaikeus == 4) {
             vaikeus = 3;
         }
-        
-        alkuKassa ++;
-        if(alkuKassa == 4){
+
+        alkuKassa++;
+        if (alkuKassa == 4) {
             alkuKassa = 3;
         }
         jLabel4.setText(NewGameHelp1.Vaikeus(vaikeus));
