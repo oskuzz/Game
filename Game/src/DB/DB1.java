@@ -56,7 +56,18 @@ public class DB1 {
             Games++;
 
         }
+        toGames();
+    }
 
+    public static void toGames() throws SQLException {
+        try {
+            Statement sta = conn.createStatement();
+            sta.executeUpdate("UPDATE User SET Games = ('" + Games + "') WHERE ID = 0");
+
+            System.out.println("Inserted into database");
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
     public static int LoadGame() throws SQLException {

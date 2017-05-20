@@ -29,6 +29,8 @@ public class NewGame extends javax.swing.JFrame {
     public NewGame() {
         try {
             initComponents();
+            vaikeus = 1;
+            alkuKassa = 1;
             bMan = new DB2();
 
         } catch (ClassNotFoundException ex) {
@@ -118,19 +120,28 @@ public class NewGame extends javax.swing.JFrame {
         if (jTextField1.equals("") && jTextField2.equals("")) {
 
         } else {
+            this.setVisible(false);
+            new Game().setVisible(true);
+            
+            try {
+                DB.getGames();
+            } catch (SQLException ex) {
+                Logger.getLogger(NewGame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             try {
                 DB.getID();
             } catch (SQLException ex) {
                 Logger.getLogger(NewGame.class.getName()).log(Level.SEVERE, null, ex);
             }
             DB.toDB(jTextField1.getText(), jTextField2.getText(), vaikeus, alkuKassa);
+            
             try {
                 DB.LoadGame2(1);
             } catch (SQLException ex) {
                 Logger.getLogger(NewGame.class.getName()).log(Level.SEVERE, null, ex);
             }
-            this.setVisible(false);
-            new Game().setVisible(true);
+
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
